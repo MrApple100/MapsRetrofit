@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -47,6 +49,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    hilt {
+        enableAggregatingTask = false
+    }
 }
 
 dependencies {
@@ -58,6 +63,13 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.15.1")
     //Serialization
     implementation ("com.google.code.gson:gson:2.10.1")
+
+    //implementation("com.google.dagger:hilt-android-gradle-plugin:2.38.1")
+
+    // other dependencies
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

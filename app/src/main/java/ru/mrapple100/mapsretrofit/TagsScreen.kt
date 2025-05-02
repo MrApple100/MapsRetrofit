@@ -16,7 +16,7 @@ import ru.mrapple100.mapsretrofit.network.SingletoneRetrofit
 
 @Composable
 fun TagsScreen(
-    tagsViewModel: TagsViewModel = SingletoneRetrofit.tagsViewModel
+    tagsViewModel: TagsViewModel
 ) {
     val tags  = tagsViewModel._tagsStateFlow.collectAsState()
     Column(

@@ -1,6 +1,8 @@
 package ru.mrapple100.mapsretrofit
 
 import android.util.Log
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -8,10 +10,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.mrapple100.mapsretrofit.model.Tags
 import ru.mrapple100.mapsretrofit.network.Resource
+import javax.inject.Inject
 
-class TagsViewModel(
+@HiltViewModel
+class TagsViewModel @Inject constructor(
    val tagsRepository: TagsRepository
-) {
+):ViewModel() {
 
 
     val tagsMutableStateFlow = MutableStateFlow<List<Tags>?>(null)

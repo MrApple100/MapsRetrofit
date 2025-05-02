@@ -10,11 +10,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dagger.hilt.android.AndroidEntryPoint
 import ru.mrapple100.mapsretrofit.ui.theme.MapsRetrofitTheme
+import androidx.activity.viewModels
+import androidx.hilt.navigation.compose.hiltViewModel
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MapsRetrofitTheme {
                 // A surface container using the 'background' color from the theme
@@ -22,7 +28,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TagsScreen()
+                    val viewModel: TagsViewModel = hiltViewModel<TagsViewModel>()
+                    TagsScreen(viewModel)
                 }
             }
         }
